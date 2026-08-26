@@ -1424,3 +1424,214 @@ body.mobile-menu-active {
         display: none !important;
     }
 }
+
+/* WHATSAPP CTA */
+.whatsapp-cta {
+    position: fixed;
+    bottom: 3.5rem;
+    left: 3.5rem;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    color: var(--color-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    z-index: 99;
+    transition: transform 0.3s var(--ease-out-expo), background-color 0.3s;
+}
+
+.whatsapp-cta:hover {
+    transform: scale(1.08);
+    background-color: #20BA56;
+}
+
+/* HEADER PHONE */
+.header-phone {
+    margin-left: 2rem;
+    font-weight: 500 !important;
+    color: var(--color-accent) !important;
+}
+
+.site-header.scrolled .header-phone {
+    color: var(--color-accent) !important;
+}
+
+/* TESTIMONIALS SECTION */
+.testimonials-section {
+    padding: var(--section-padding) 0;
+    background-color: var(--color-surface);
+}
+
+.testimonials-grid {
+    grid-template-columns: 1.2fr 1.8fr;
+    align-items: start;
+}
+
+.testimonials-slider {
+    position: relative;
+    max-width: 65rem;
+}
+
+.testimonial-track {
+    position: relative;
+    height: auto;
+    min-height: 220px;
+}
+
+.testimonial-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(15px);
+    transition: opacity 0.6s var(--ease-out-expo), transform 0.6s var(--ease-out-expo);
+}
+
+.testimonial-slide.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    position: relative;
+}
+
+.testimonial-quote {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    line-height: 1.4;
+    color: var(--color-dark);
+    margin-bottom: 2.5rem;
+    font-style: italic;
+}
+
+.testimonial-author {
+    font-family: var(--font-sans);
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    display: block;
+}
+
+.testimonials-nav {
+    display: flex;
+    gap: 2rem;
+    margin-top: 4rem;
+}
+
+.testimonial-btn {
+    font-size: 1.6rem;
+    color: var(--color-muted);
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid transparent;
+    transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.testimonial-btn:hover {
+    color: var(--color-dark);
+    border-bottom-color: var(--color-dark);
+}
+
+/* MODAL CAROUSEL */
+.modal-carousel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: var(--color-surface);
+    overflow: hidden;
+}
+
+.carousel-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    transition: transform 0.6s var(--ease-out-expo);
+}
+
+.carousel-slide {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    background-color: rgba(244, 243, 240, 0.9);
+    color: var(--color-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.carousel-btn:hover {
+    background-color: var(--color-dark);
+    color: var(--color-white);
+    transform: translateY(-50%) scale(1.05);
+}
+
+.prev-btn {
+    left: 2rem;
+}
+
+.next-btn {
+    right: 2rem;
+}
+
+.carousel-dots {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1rem;
+    z-index: 10;
+}
+
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(28, 29, 31, 0.2);
+    cursor: pointer;
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.carousel-dot.active {
+    background-color: var(--color-dark);
+    transform: scale(1.2);
+}
+
+@media (max-width: 1024px) {
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    .whatsapp-cta {
+        bottom: 2rem;
+        left: 2rem;
+        width: 50px;
+        height: 50px;
+    }
+    .header-phone {
+        display: none; /* Hide phone text next to burger on small screens */
+    }
+}

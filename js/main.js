@@ -1,9 +1,9 @@
 /* -------------------------------------------------------------
  * KALIA ARCHITECTS - JAVASCRIPT
- * Custom interactions, custom cursor, GSAP scroll triggers & modal
+ * Custom interactions, custom cursor, GSAP scroll triggers, modal carousel & testimonials slider
  * ------------------------------------------------------------- */
 
-// Project Database
+// Project Database with multiple images per project
 const projectData = [
     {
         num: "01",
@@ -11,7 +11,11 @@ const projectData = [
         category: "Residential &middot; Dharamshala",
         year: "2024",
         location: "Civil Lines, Dharamshala",
-        image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200",
+        images: [
+            "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200",
+            "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200",
+            "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200"
+        ],
         description: "Nestled in the pine forests of Dharamshala, this private residence uses local slate stone and cedar timber to create a warm, context-aware living space. The design centers on visual connectivity to the Dhauladhar range, balancing double-height glass walls with massive stone piers."
     },
     {
@@ -20,7 +24,11 @@ const projectData = [
         category: "Residential &middot; Kangra",
         year: "2023",
         location: "Kangra Valley",
-        image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1200",
+        images: [
+            "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1200",
+            "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1200",
+            "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200"
+        ],
         description: "A contemporary mountain home built on a sloping agricultural terraced plot. The design incorporates deep roof overhangs to shield against intense monsoon rains, exposed concrete finishes, and a spacious open deck that frames panoramic valley sunsets."
     },
     {
@@ -29,7 +37,10 @@ const projectData = [
         category: "Commercial / Clinical &middot; Dharamshala",
         year: "2022",
         location: "Dharamshala District",
-        image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1200",
+        images: [
+            "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1200",
+            "https://images.unsplash.com/photo-1519494080410-f9ab76cb42a3?q=80&w=1200"
+        ],
         description: "A modern healthcare facility that rejects sterile clinical design in favor of healing architecture. By utilizing natural daylight, courtyard gardens, and local Himalayan materials, the space offers a calming, hopeful environment for patients."
     },
     {
@@ -38,7 +49,10 @@ const projectData = [
         category: "Hospitality &middot; Dharamshala",
         year: "2025",
         location: "Civil Lines, Dharamshala",
-        image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200",
+        images: [
+            "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200",
+            "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1200"
+        ],
         description: "Completed in 2025, this premium boutique hotel serves as a modern sanctuary. The design bridges local heritage and luxury, featuring custom woodwork, valley view suites, and an open terrace celebrating mountain twilight."
     },
     {
@@ -47,7 +61,10 @@ const projectData = [
         category: "Hospitality &middot; Dharamshala",
         year: "2021",
         location: "Dharamshala",
-        image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=1200",
+        images: [
+            "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=1200",
+            "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200"
+        ],
         description: "A mountain retreat resort that frames the rugged terrain. Timber beams and structural slate details connect guests directly with the Himalayan backdrop, emphasizing warmth, fireplace gatherings, and outdoor panoramic decks."
     },
     {
@@ -56,7 +73,10 @@ const projectData = [
         category: "Commercial &middot; Nurpur, Kangra",
         year: "2024",
         location: "Nurpur, HP",
-        image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200",
+        images: [
+            "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200",
+            "https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1200"
+        ],
         description: "A sleek workplace emphasizing open-plan layouts and sustainable climate control. Passive heating design channels the winter sun, while vertical structural louvers shade the interiors during warm summer months."
     },
     {
@@ -65,7 +85,10 @@ const projectData = [
         category: "Interiors &middot; Dharamshala",
         year: "2023",
         location: "Dharamshala",
-        image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200",
+        images: [
+            "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200",
+            "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1200"
+        ],
         description: "A minimalist interior transformation prioritizing light and tactile simplicity. Handcrafted wooden ceilings, limestone floors, and custom low-profile furniture frame the natural landscape outside as the primary artwork."
     }
 ];
@@ -113,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        // Parallax image initial scale settle
+        // Parallax image scale settle
         heroTl.fromTo(".hero-bg-parallax", 
             { scale: 1.15, opacity: 0 },
             { scale: 1, opacity: 1, duration: 1.8, ease: "power3.out" }
@@ -126,7 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "-=1.2"
         );
 
-        // Title reveals line by line
+        // Title reveals line-by-line
         heroTl.fromTo(".hero-title .title-line", 
             { y: "100%", opacity: 0 },
             { y: "0%", opacity: 1, stagger: 0.2, duration: 1.2, ease: "power4.out" },
@@ -219,7 +242,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     } else if (cursor) {
-        cursor.style.display = "none"; // Hide completely on touch
+        cursor.style.display = "none";
     }
 
     // 6. SCROLL REVEALS (GSAP SCROLLTRIGGER)
@@ -305,7 +328,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         );
     } else {
-        // Reduced motion fallback: instantly reveal everything
+        // Reduced motion fallback
         const revealTexts = document.querySelectorAll(".reveal-text, .reveal-up");
         revealTexts.forEach(el => gsap.set(el, { opacity: 1, y: 0 }));
 
@@ -313,10 +336,9 @@ document.addEventListener("DOMContentLoaded", () => {
         imageContainers.forEach(container => container.classList.add("revealed"));
     }
 
-    // 7. LIGHTBOX MODAL INTERACTIONS
+    // 7. LIGHTBOX MODAL & CAROUSEL INTERACTIONS
     const projectItems = document.querySelectorAll(".project-item");
     const modal = document.getElementById("project-modal");
-    const modalImg = document.getElementById("modal-img");
     const modalTitle = document.getElementById("modal-title");
     const modalCategory = document.getElementById("modal-category");
     const modalDescription = document.getElementById("modal-description");
@@ -325,35 +347,99 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalLocation = document.getElementById("modal-spec-location");
     const modalClose = document.getElementById("modal-close");
 
+    // Carousel variables
+    let currentSlide = 0;
+    let activeImages = [];
+    const carouselContainer = document.getElementById("carousel-container");
+    const carouselDots = document.getElementById("carousel-dots");
+    const prevBtn = document.getElementById("carousel-prev");
+    const nextBtn = document.getElementById("carousel-next");
+
+    function renderCarousel(images, title) {
+        currentSlide = 0;
+        activeImages = images;
+        
+        carouselContainer.innerHTML = "";
+        carouselDots.innerHTML = "";
+
+        images.forEach((imgUrl, idx) => {
+            const slide = document.createElement("div");
+            slide.className = "carousel-slide";
+            
+            const img = document.createElement("img");
+            img.src = imgUrl;
+            img.alt = `${title} - Image ${idx + 1}`;
+            img.loading = "lazy";
+            
+            slide.appendChild(img);
+            carouselContainer.appendChild(slide);
+
+            const dot = document.createElement("div");
+            dot.className = `carousel-dot ${idx === 0 ? 'active' : ''}`;
+            dot.addEventListener("click", () => goToSlide(idx));
+            carouselDots.appendChild(dot);
+        });
+
+        updateCarouselPosition();
+    }
+
+    function goToSlide(index) {
+        if (index < 0) {
+            currentSlide = activeImages.length - 1;
+        } else if (index >= activeImages.length) {
+            currentSlide = 0;
+        } else {
+            currentSlide = index;
+        }
+        updateCarouselPosition();
+    }
+
+    function updateCarouselPosition() {
+        if (carouselContainer) {
+            carouselContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+        const dots = document.querySelectorAll(".carousel-dot");
+        dots.forEach((dot, idx) => {
+            if (idx === currentSlide) {
+                dot.classList.add("active");
+            } else {
+                dot.classList.remove("active");
+            }
+        });
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener("click", () => goToSlide(currentSlide - 1));
+    }
+    if (nextBtn) {
+        nextBtn.addEventListener("click", () => goToSlide(currentSlide + 1));
+    }
+
     function openModal(projectId) {
         const data = projectData[projectId];
         if (!data) return;
 
-        // Populate Modal Details
         modalNum.textContent = data.num;
         modalTitle.textContent = data.title;
         modalCategory.innerHTML = data.category;
         modalDescription.innerHTML = `<p>${data.description}</p>`;
         modalYear.textContent = data.year;
         modalLocation.textContent = data.location;
-        modalImg.src = data.image;
-        modalImg.alt = data.title;
 
-        // Toggle Modal Classes
+        renderCarousel(data.images, data.title);
+
         modal.classList.add("active");
         modal.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden"; // Lock page scroll
+        document.body.style.overflow = "hidden";
 
-        // Keyboard focus management
         modalClose.focus();
     }
 
     function closeModal() {
         modal.classList.remove("active");
         modal.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = ""; // Restore scroll
+        document.body.style.overflow = "";
         
-        // Return focus to active project item
         const activeProject = document.querySelector(`.project-item[data-project="${modalNum.textContent - 1}"]`);
         if (activeProject) activeProject.focus();
     }
@@ -364,7 +450,6 @@ document.addEventListener("DOMContentLoaded", () => {
             openModal(index);
         });
 
-        // Add keyboard interaction for focus state accessibility
         item.setAttribute("tabindex", "0");
         item.addEventListener("keydown", (e) => {
             if (e.key === "Enter" || e.key === " ") {
@@ -379,7 +464,6 @@ document.addEventListener("DOMContentLoaded", () => {
         modalClose.addEventListener("click", closeModal);
     }
 
-    // Close when clicking backdrop
     if (modal) {
         modal.addEventListener("click", (e) => {
             if (e.target === modal) {
@@ -388,10 +472,47 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Keyboard support: Escape closes modal
     document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && modal.classList.contains("active")) {
-            closeModal();
+        if (modal.classList.contains("active")) {
+            if (e.key === "Escape") closeModal();
+            if (e.key === "ArrowLeft") goToSlide(currentSlide - 1);
+            if (e.key === "ArrowRight") goToSlide(currentSlide + 1);
         }
     });
+
+    // 8. TESTIMONIALS SLIDER LOGIC
+    const testimonialSlides = document.querySelectorAll(".testimonial-slide");
+    const prevTestimonial = document.getElementById("prev-testimonial");
+    const nextTestimonial = document.getElementById("next-testimonial");
+    let currentTestimonial = 0;
+
+    function showTestimonial(index) {
+        if (testimonialSlides.length === 0) return;
+        testimonialSlides.forEach(slide => slide.classList.remove("active"));
+        if (index < 0) {
+            currentTestimonial = testimonialSlides.length - 1;
+        } else if (index >= testimonialSlides.length) {
+            currentTestimonial = 0;
+        } else {
+            currentTestimonial = index;
+        }
+        testimonialSlides[currentTestimonial].classList.add("active");
+    }
+
+    if (prevTestimonial) {
+        prevTestimonial.addEventListener("click", () => {
+            showTestimonial(currentTestimonial - 1);
+        });
+    }
+    if (nextTestimonial) {
+        nextTestimonial.addEventListener("click", () => {
+            showTestimonial(currentTestimonial + 1);
+        });
+    }
+
+    if (testimonialSlides.length > 0) {
+        setInterval(() => {
+            showTestimonial(currentTestimonial + 1);
+        }, 6000);
+    }
 });
