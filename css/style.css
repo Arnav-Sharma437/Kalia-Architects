@@ -16,9 +16,8 @@
     --color-approach-bg: #D3D6CF;  /* Soft grey-green sage */
     --color-white: #FFFFFF;
     
-    /* Font System */
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-serif: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     
     /* Layout Spacing */
     --container-max-width: 1440px;
@@ -57,22 +56,22 @@ body {
 
 /* TYPOGRAPHY */
 h1, h2 {
-    font-family: var(--font-serif);
-    font-weight: 300;
+    font-family: var(--font-sans);
+    font-weight: 700;
     line-height: 1.15;
     color: var(--color-dark);
 }
 
 h3, h4 {
     font-family: var(--font-sans);
-    font-weight: 400;
+    font-weight: 600;
     line-height: 1.3;
     color: var(--color-dark);
-    letter-spacing: 0.1em;
+    letter-spacing: 0.05em;
 }
 
 p {
-    font-weight: 300;
+    font-weight: 400;
 }
 
 a {
@@ -1448,15 +1447,34 @@ body.mobile-menu-active {
     background-color: #20BA56;
 }
 
-/* HEADER PHONE */
+/* HEADER PHONE BUTTON */
 .header-phone {
-    margin-left: 2rem;
-    font-weight: 500 !important;
-    color: var(--color-accent) !important;
+    margin-left: 3rem;
+    font-weight: 600 !important;
+    color: var(--color-white) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 0.8rem 1.8rem;
+    letter-spacing: 0.15em !important;
+    font-size: 1.1rem !important;
+    text-transform: uppercase;
+    transition: border-color var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast) !important;
+}
+
+.header-phone:hover {
+    background-color: var(--color-white);
+    color: var(--color-dark) !important;
+    border-color: var(--color-white);
 }
 
 .site-header.scrolled .header-phone {
-    color: var(--color-accent) !important;
+    color: var(--color-dark) !important;
+    border-color: rgba(28, 29, 31, 0.2);
+}
+
+.site-header.scrolled .header-phone:hover {
+    background-color: var(--color-dark);
+    color: var(--color-white) !important;
+    border-color: var(--color-dark);
 }
 
 /* TESTIMONIALS SECTION */
@@ -1627,11 +1645,12 @@ body.mobile-menu-active {
     }
     .whatsapp-cta {
         bottom: 2rem;
-        left: 2rem;
+        left: auto;
+        right: 2rem;
         width: 50px;
         height: 50px;
     }
     .header-phone {
-        display: none; /* Hide phone text next to burger on small screens */
+        display: none;
     }
 }
