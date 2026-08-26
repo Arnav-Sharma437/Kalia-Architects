@@ -1424,28 +1424,7 @@ body.mobile-menu-active {
     }
 }
 
-/* WHATSAPP CTA */
-.whatsapp-cta {
-    position: fixed;
-    bottom: 3.5rem;
-    left: 3.5rem;
-    width: 60px;
-    height: 60px;
-    background-color: #25D366;
-    color: var(--color-white);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    z-index: 99;
-    transition: transform 0.3s var(--ease-out-expo), background-color 0.3s;
-}
 
-.whatsapp-cta:hover {
-    transform: scale(1.08);
-    background-color: #20BA56;
-}
 
 /* HEADER PHONE BUTTON */
 .header-phone {
@@ -1642,13 +1621,6 @@ body.mobile-menu-active {
     .testimonials-grid {
         grid-template-columns: 1fr;
         gap: 3rem;
-    }
-    .whatsapp-cta {
-        bottom: 2rem;
-        left: auto;
-        right: 2rem;
-        width: 50px;
-        height: 50px;
     }
     .header-phone {
         display: none;
