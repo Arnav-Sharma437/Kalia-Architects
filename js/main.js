@@ -484,35 +484,98 @@ document.addEventListener("DOMContentLoaded", () => {
     const testimonialSlides = document.querySelectorAll(".testimonial-slide");
     const prevTestimonial = document.getElementById("prev-testimonial");
     const nextTestimonial = document.getElementById("next-testimonial");
+    const testimonialTrack = document.getElementById("testimonial-track");
     let currentTestimonial = 0;
+    let autoRotateInterval;
 
-    function showTestimonial(index) {
+    function showTestimonial(index, direction = "next") {
         if (testimonialSlides.length === 0) return;
-        testimonialSlides.forEach(slide => slide.classList.remove("active"));
+        
+        const currentSlideEl = testimonialSlides[currentTestimonial];
+        
+        let nextIndex;
         if (index < 0) {
-            currentTestimonial = testimonialSlides.length - 1;
+            nextIndex = testimonialSlides.length - 1;
         } else if (index >= testimonialSlides.length) {
-            currentTestimonial = 0;
+            nextIndex = 0;
         } else {
-            currentTestimonial = index;
+            nextIndex = index;
         }
-        testimonialSlides[currentTestimonial].classList.add("active");
+        
+        if (nextIndex === currentTestimonial) return;
+        
+        const nextSlideEl = testimonialSlides[nextIndex];
+        currentSlideEl.style.pointerEvents = "none";
+        
+        const offset = direction === "next" ? 30 : -30;
+        
+        // Fade out current slide
+        gsap.to(currentSlideEl, {
+            opacity: 0,
+            y: -offset,
+            duration: 0.4,
+            ease: "power2.in",
+            onComplete: () => {
+                currentSlideEl.classList.remove("active");
+                gsap.set(currentSlideEl, { y: 0 });
+            }
+        });
+
+        // Setup and fade in next slide
+        nextSlideEl.classList.add("active");
+        gsap.fromTo(nextSlideEl, 
+            { opacity: 0, y: offset },
+            { 
+                opacity: 1, 
+                y: 0, 
+                duration: 0.6, 
+                ease: "power3.out",
+                delay: 0.2,
+                onComplete: () => {
+                    nextSlideEl.style.pointerEvents = "auto";
+                }
+            }
+        );
+
+        // Adjust track height dynamically to match active slide text height
+        if (testimonialTrack) {
+            gsap.to(testimonialTrack, {
+                height: nextSlideEl.offsetHeight,
+                duration: 0.4,
+                ease: "power2.out"
+            });
+        }
+        
+        currentTestimonial = nextIndex;
+        resetAutoRotate();
+    }
+
+    function resetAutoRotate() {
+        clearInterval(autoRotateInterval);
+        if (testimonialSlides.length > 0) {
+            autoRotateInterval = setInterval(() => {
+                showTestimonial(currentTestimonial + 1, "next");
+            }, 6000);
+        }
     }
 
     if (prevTestimonial) {
         prevTestimonial.addEventListener("click", () => {
-            showTestimonial(currentTestimonial - 1);
+            showTestimonial(currentTestimonial - 1, "prev");
         });
     }
     if (nextTestimonial) {
         nextTestimonial.addEventListener("click", () => {
-            showTestimonial(currentTestimonial + 1);
+            showTestimonial(currentTestimonial + 1, "next");
         });
     }
 
-    if (testimonialSlides.length > 0) {
-        setInterval(() => {
-            showTestimonial(currentTestimonial + 1);
-        }, 6000);
-    }
+    // Set initial track height
+    setTimeout(() => {
+        if (testimonialTrack && testimonialSlides.length > 0) {
+            testimonialTrack.style.height = `${testimonialSlides[0].offsetHeight}px`;
+        }
+    }, 500); // Small delay to let browser calculate layout
+
+    resetAutoRotate();
 });
