@@ -12,6 +12,11 @@ const projectData = [
         year: "2024",
         location: "Civil Lines, Dharamshala",
         images: [
+            "assets/projects/01-residence-dharamshala/1.jpg",
+            "assets/projects/01-residence-dharamshala/2.jpg",
+            "assets/projects/01-residence-dharamshala/3.jpg"
+        ],
+        fallbackImages: [
             "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200",
             "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200",
             "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200"
@@ -25,6 +30,11 @@ const projectData = [
         year: "2023",
         location: "Kangra Valley",
         images: [
+            "assets/projects/02-residence-kangra/1.jpg",
+            "assets/projects/02-residence-kangra/2.jpg",
+            "assets/projects/02-residence-kangra/3.jpg"
+        ],
+        fallbackImages: [
             "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1200",
             "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1200",
             "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200"
@@ -38,6 +48,10 @@ const projectData = [
         year: "2022",
         location: "Dharamshala District",
         images: [
+            "assets/projects/03-hospital-dharamshala/1.jpg",
+            "assets/projects/03-hospital-dharamshala/2.jpg"
+        ],
+        fallbackImages: [
             "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1200",
             "https://images.unsplash.com/photo-1519494080410-f9ab76cb42a3?q=80&w=1200"
         ],
@@ -50,6 +64,10 @@ const projectData = [
         year: "2025",
         location: "Civil Lines, Dharamshala",
         images: [
+            "assets/projects/04-hotel-sidharth-inn/1.jpg",
+            "assets/projects/04-hotel-sidharth-inn/2.jpg"
+        ],
+        fallbackImages: [
             "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200",
             "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1200"
         ],
@@ -62,6 +80,10 @@ const projectData = [
         year: "2021",
         location: "Dharamshala",
         images: [
+            "assets/projects/05-hotel-highland/1.jpg",
+            "assets/projects/05-hotel-highland/2.jpg"
+        ],
+        fallbackImages: [
             "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=1200",
             "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200"
         ],
@@ -74,6 +96,10 @@ const projectData = [
         year: "2024",
         location: "Nurpur, HP",
         images: [
+            "assets/projects/06-office-nurpur/1.jpg",
+            "assets/projects/06-office-nurpur/2.jpg"
+        ],
+        fallbackImages: [
             "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200",
             "https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1200"
         ],
@@ -86,6 +112,10 @@ const projectData = [
         year: "2023",
         location: "Dharamshala",
         images: [
+            "assets/projects/07-residential-interior/1.jpg",
+            "assets/projects/07-residential-interior/2.jpg"
+        ],
+        fallbackImages: [
             "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1200",
             "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1200"
         ],
@@ -355,7 +385,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const prevBtn = document.getElementById("carousel-prev");
     const nextBtn = document.getElementById("carousel-next");
 
-    function renderCarousel(images, title) {
+    function renderCarousel(images, title, fallbackImages = []) {
         currentSlide = 0;
         activeImages = images;
         
@@ -370,6 +400,12 @@ document.addEventListener("DOMContentLoaded", () => {
             img.src = imgUrl;
             img.alt = `${title} - Image ${idx + 1}`;
             img.loading = "lazy";
+            if (fallbackImages && fallbackImages[idx]) {
+                img.onerror = function() {
+                    this.onerror = null;
+                    this.src = fallbackImages[idx];
+                };
+            }
             
             slide.appendChild(img);
             carouselContainer.appendChild(slide);
@@ -426,7 +462,7 @@ document.addEventListener("DOMContentLoaded", () => {
         modalYear.textContent = data.year;
         modalLocation.textContent = data.location;
 
-        renderCarousel(data.images, data.title);
+        renderCarousel(data.images, data.title, data.fallbackImages);
 
         modal.classList.add("active");
         modal.setAttribute("aria-hidden", "false");
