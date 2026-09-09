@@ -52,12 +52,8 @@ const projectData = [
         year: "2025",
         location: "Civil Lines, Dharamshala",
         images: [
-            "assets/projects/04-hotel-sidharth-inn/1.jpg",
-            "assets/projects/04-hotel-sidharth-inn/2.jpg"
-        ],
-        fallbackImages: [
-            "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200",
-            "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1200"
+            "assets/projects/04-hotel-sidharth-inn/01.jpeg",
+            "assets/projects/04-hotel-sidharth-inn/02.jpeg"
         ],
         description: "Completed in 2025, this premium boutique hotel serves as a modern sanctuary. The design bridges local heritage and luxury, featuring custom woodwork, valley view suites, and an open terrace celebrating mountain twilight."
     },
@@ -68,12 +64,12 @@ const projectData = [
         year: "2021",
         location: "Dharamshala",
         images: [
-            "assets/projects/05-hotel-highland/1.jpg",
-            "assets/projects/05-hotel-highland/2.jpg"
-        ],
-        fallbackImages: [
-            "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=1200",
-            "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200"
+            "assets/projects/05-hotel-highland/01.jpeg",
+            "assets/projects/05-hotel-highland/02.jpeg",
+            "assets/projects/05-hotel-highland/03.jpeg",
+            "assets/projects/05-hotel-highland/04.jpeg",
+            "assets/projects/05-hotel-highland/05.jpeg",
+            "assets/projects/05-hotel-highland/06.jpeg"
         ],
         description: "A mountain retreat resort that frames the rugged terrain. Timber beams and structural slate details connect guests directly with the Himalayan backdrop, emphasizing warmth, fireplace gatherings, and outdoor panoramic decks."
     },
