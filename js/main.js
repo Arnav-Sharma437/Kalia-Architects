@@ -80,12 +80,7 @@ const projectData = [
         year: "2024",
         location: "Nurpur, HP",
         images: [
-            "assets/projects/06-office-nurpur/1.jpg",
-            "assets/projects/06-office-nurpur/2.jpg"
-        ],
-        fallbackImages: [
-            "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200",
-            "https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1200"
+            "assets/projects/06-office-nurpur/nurpur office.jpeg"
         ],
         description: "A sleek workplace emphasizing open-plan layouts and sustainable climate control. Passive heating design channels the winter sun, while vertical structural louvers shade the interiors during warm summer months."
     },
