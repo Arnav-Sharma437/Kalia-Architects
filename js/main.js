@@ -41,12 +41,7 @@ const projectData = [
         year: "2022",
         location: "Dharamshala District",
         images: [
-            "assets/projects/03-hospital-dharamshala/1.jpg",
-            "assets/projects/03-hospital-dharamshala/2.jpg"
-        ],
-        fallbackImages: [
-            "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1200",
-            "https://images.unsplash.com/photo-1519494080410-f9ab76cb42a3?q=80&w=1200"
+            "assets/projects/03-hospital-dharamshala/HOSPITAL.jpg"
         ],
         description: "A modern healthcare facility that rejects sterile clinical design in favor of healing architecture. By utilizing natural daylight, courtyard gardens, and local Himalayan materials, the space offers a calming, hopeful environment for patients."
     },
