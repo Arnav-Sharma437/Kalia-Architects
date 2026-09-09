@@ -12,14 +12,7 @@ const projectData = [
         year: "2024",
         location: "Civil Lines, Dharamshala",
         images: [
-            "assets/projects/01-residence-dharamshala/1.jpg",
-            "assets/projects/01-residence-dharamshala/2.jpg",
-            "assets/projects/01-residence-dharamshala/3.jpg"
-        ],
-        fallbackImages: [
-            "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200",
-            "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200",
-            "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200"
+            "assets/projects/01-residence-dharamshala/residence-at-dharamshala.jpeg"
         ],
         description: "Nestled in the pine forests of Dharamshala, this private residence uses local slate stone and cedar timber to create a warm, context-aware living space. The design centers on visual connectivity to the Dhauladhar range, balancing double-height glass walls with massive stone piers."
     },
@@ -415,6 +408,16 @@ document.addEventListener("DOMContentLoaded", () => {
             dot.addEventListener("click", () => goToSlide(idx));
             carouselDots.appendChild(dot);
         });
+
+        if (images.length <= 1) {
+            if (prevBtn) prevBtn.style.display = "none";
+            if (nextBtn) nextBtn.style.display = "none";
+            if (carouselDots) carouselDots.style.display = "none";
+        } else {
+            if (prevBtn) prevBtn.style.display = "flex";
+            if (nextBtn) nextBtn.style.display = "flex";
+            if (carouselDots) carouselDots.style.display = "flex";
+        }
 
         updateCarouselPosition();
     }
